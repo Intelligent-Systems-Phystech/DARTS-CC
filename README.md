@@ -20,7 +20,7 @@ The core of our NAS implementation is based on the [pt.darts, reimplementation o
 
 The main logic of the proposed method can be found at [cnn_darts_hypernet package](models/cnn_darts_hypernet).
 
-We do not use augment.py for the architecture fine-tuning, instead we use search.py with some class changes (see [one_hot_cnn.py](models/cnn/one_hot_cnn.py)) for better model training transparency. The one-host model takes ".json" file with model structure obtained during NAS. We put one-hot non-trainable tensors into the model architecture for the fine-tuning.
+We do not use augment.py for the architecture fine-tuning, instead we use search.py with some class changes (see [one_hot_cnn.py](models/cnn/one_hot_cnn.py)) for better model training transparency. The one-hot model takes ".json" file with model structure obtained during NAS. We put one-hot non-trainable tensors into the model architecture for the fine-tuning.
 
 All the experiment details are stored into config files, see [configs directory](configs).
 ## Environment preparation
