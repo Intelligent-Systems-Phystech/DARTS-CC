@@ -42,13 +42,13 @@ docker exec -it nas /bin/bash
 ```
 ## Toy experiments
 Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we describe the reproduction for the FashionMNIST experiments.
-## Random search
+### Random search
 1. Generate random genotypes for the models using the [notebook](analysis/hyper/generate_genotypes.ipynb) orjust use [already generated genotypes](configs/mini_fmnist_hyper_final)
 2. run fine-tuning with [random architectures config](configs/mini_fmnist_hyper_final/fmnist_random.cfg):
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_random.cfg ```
 3. The resulting models will be stored at your search/mini_fmnist_random directory.
 
-## DARTS
+### DARTS
 *The first 2 steps are required for neural architecture search and architectures extraction (in terms of the [original DARTS repository](https://github.com/quark0/darts) the archtiecture of the model is charachterized by its genotypes). We stored obtained architectures [into configs directory](configs/mini_fmnist_hyper_final), so generally you don't need to run searh, only fine-tuning.*
 
 1. run search with [DARTS config](configs/mini_fmnist_hyper_final/fmnist.cfg):
@@ -58,10 +58,10 @@ Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we descr
 3. run fine-tuning with [DARST fine-tuning config](configs/mini_fmnist_hyper_final/fmnist_fine_darts.cfg)
 4. The resulting models will be stored at your search/mini_fmnist_fine_darts directory.
 
-## Proposed method
+### Proposed method
 *The first 2 steps are required for neural architecture search and architectures extraction (in terms of the [original DARTS repository](https://github.com/quark0/darts) the archtiecture of the model is charachterized by its genotypes). We stored obtained architectures [into configs directory](configs/mini_fmnist_hyper_final), so generally you don't need to run searh, only fine-tuning.*
 
-1. run search with [DARTS config](configs/mini_fmnist_hyper_final/fmnist_hyper.cfg):
+1. run search with [proposed method config](configs/mini_fmnist_hyper_final/fmnist_hyper.cfg):
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_hyper.cfg ```
 2. Extract genotypes using script:
 ```python3 analysis/hyper/run_genotypes_mini_fmnist.py```
@@ -69,7 +69,15 @@ Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we descr
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_fine_0.cfg```
 4. The resulting models will be stored at your search/mini_fmnist_fine_* directories.
 
-## Model analysis
+### Model analysis
 All the model analsysis staff is stored in the [notebook](analysis/hyper/toy_example_fmnist.ipynb).
 
 ## Large-scale experiment on CIFAR-10
+*The first 2 steps are required for neural architecture search and architectures extraction (in terms of the [original DARTS repository](https://github.com/quark0/darts) the archtiecture of the model is charachterized by its genotypes). We stored obtained architectures [into configs directory](configs/cifar_hyper_final), so generally you don't need to run searh, only fine-tuning.*
+1. run search with [proposed method config](configs/cifar_hyper_final/cifar_hyper.cfg):
+```python3 search.py configs/cifar_hyper_final/cifar_hyper.cfg```
+2. Extract genotypes using script:
+```python3 analysis/hyper/run_genotypes_cifar.py```
+3. run fine-tuning with our fine-tuning configs for different lambdas (we normalize them into [0,1]). For example, for lambda = 0.0 use the following command: 
+```python3 search.py configs/cifar_hyper_final/cifar_fine_0.cfg```
+4. The resulting models will be stored at your search/cifar_fine_* directories.
