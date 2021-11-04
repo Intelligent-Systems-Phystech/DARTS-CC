@@ -18,7 +18,28 @@ We do not use augment.py for the architecture fine-tuning, instead we use search
 
 All the experiment details are stored into config files, see [configs directory](configs).
 ## Environment preparation
+One can run the experiments in 2 regimes: locally or via Docker. We recommend to use Docker for better reproducibility.
 
+### Local run
+To run experiments locally just install packages listed in [requirements.txt](requirements.txt).
+```
+pip3 install -r requirements.txt
+```
+
+### Docker run
+To run experiments via Docker you need to build Docker image from the [Dockerfile](Dockerfile).
+Note that the docker was configured for the pytorch 1.8.1 distributed for CUDA 11.1. Depending one your hardware, you need to change this dependency in [Dockerfile](Dockerfile). 
+
+To build docker image you can run build_docker.sh:
+```
+bash build_docker.sh
+```
+
+To run the experiments inside docker you should run docker container with opened port for jupyter notebook and shared volume:
+```
+docker run -p 8888:8888 -v /data/:/nas/searchs -d  --name nas nas-hypernets
+docker exec -it nas /bin/bash
+```
 ## Toy experiments
 
 ## Large-scale experiment on CIFAR-10
