@@ -4,6 +4,12 @@ Authors: [Konstantin Yakovlev](https://github.com/Konstantin-Iakovlev), [Olga Gr
 
 Contacts: iakovlev.kd(at)phystech.edu
 
+**Table of contests**
+* [Annotation](#annotation)
+* [Technincal details](#technincal-details)
+* [Environment preparation](#environment-preparation)
+* [Toy experiments](#toy-experiments)
+* [Large-scale experiment on CIFAR-10](#large-scale-experiment-on-cifar-10)
 ## Annotation
 The paper investigates the problem of deep learning model selection. We propose a method of a neural architecture search with respect to the desired model  complexity. An amount of parameters in the model is considered as a model complexity. The proposed method is based on a differential architecture search algorithm (DARTS). Instead of optimizing structural parameters of the architecture, we consider them as a function depending on the complexity parameter. It enables us to obtain multiple architectures at one optimization procedure and select the architecture based on our computation budget.  To evaluate the performance of the proposed algorithm, we conduct experiments on the Fashion-MNIST and CIFAR-10 datasets and compare the resulting architecture with architectures obtained by other neural architecture search  methods.
 
@@ -44,7 +50,7 @@ docker exec -it nas /bin/bash
 Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we describe the reproduction for the FashionMNIST experiments.
 ### Random search
 1. Generate random genotypes for the models using the [notebook](analysis/hyper/generate_genotypes.ipynb) orjust use [already generated genotypes](configs/mini_fmnist_hyper_final)
-2. run fine-tuning with [random architectures config](configs/mini_fmnist_hyper_final/fmnist_random.cfg):
+2. Run fine-tuning with [random architectures config](configs/mini_fmnist_hyper_final/fmnist_random.cfg):
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_random.cfg ```
 3. The resulting models will be stored at your search/mini_fmnist_random directory.
 
@@ -55,7 +61,7 @@ Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we descr
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_random.cfg ```
 2. Extract genotypes using script:
 ```python3 analysis/hyper/run_genotypes_mini_fmnist_darts.py```
-3. run fine-tuning with [DARST fine-tuning config](configs/mini_fmnist_hyper_final/fmnist_fine_darts.cfg)
+3. Run fine-tuning with [DARST fine-tuning config](configs/mini_fmnist_hyper_final/fmnist_fine_darts.cfg)
 4. The resulting models will be stored at your search/mini_fmnist_fine_darts directory.
 
 ### Proposed method
@@ -65,7 +71,7 @@ Generally the pipeline is similar for both FashionMNIST and CIAFR. Here we descr
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_hyper.cfg ```
 2. Extract genotypes using script:
 ```python3 analysis/hyper/run_genotypes_mini_fmnist.py```
-3. run fine-tuning with our fine-tuning configs for different lambdas (we normalize them into [0,1]). For example, for lambda = 0.0 use the following command: 
+3. Run fine-tuning with our fine-tuning configs for different lambdas (we normalize them into [0,1]). For example, for lambda = 0.0 use the following command: 
 ```python3 search.py configs/mini_fmnist_hyper_final/fmnist_fine_0.cfg```
 4. The resulting models will be stored at your search/mini_fmnist_fine_* directories.
 
@@ -78,6 +84,6 @@ All the model analsysis staff is stored in the [notebook](analysis/hyper/toy_exa
 ```python3 search.py configs/cifar_hyper_final/cifar_hyper.cfg```
 2. Extract genotypes using script:
 ```python3 analysis/hyper/run_genotypes_cifar.py```
-3. run fine-tuning with our fine-tuning configs for different lambdas (we normalize them into [0,1]). For example, for lambda = 0.0 use the following command: 
+3. Run fine-tuning with our fine-tuning configs for different lambdas (we normalize them into [0,1]). For example, for lambda = 0.0 use the following command: 
 ```python3 search.py configs/cifar_hyper_final/cifar_fine_0.cfg```
 4. The resulting models will be stored at your search/cifar_fine_* directories.
