@@ -13,7 +13,8 @@ Contacts: iakovlev.kd(at)phystech.edu
 ## Annotation
 The paper investigates the problem of deep learning model selection. We propose a method of a neural architecture search with respect to the desired model  complexity. An amount of parameters in the model is considered as a model complexity. The proposed method is based on a differential architecture search algorithm (DARTS). Instead of optimizing structural parameters of the architecture, we consider them as a function depending on the complexity parameter. It enables us to obtain multiple architectures at one optimization procedure and select the architecture based on our computation budget.  To evaluate the performance of the proposed algorithm, we conduct experiments on the Fashion-MNIST and CIFAR-10 datasets and compare the resulting architecture with architectures obtained by other neural architecture search  methods.
 
-[TODO: can we publish 1-2 figures from the paper?]
+<img src="DARTS_CC.png" width="512"/>
+The main idea of our paper is to propose a modification of the DARTS algorithm: instead of using constant structure parameters α^{(i,j)} that control the model architecture we propose to consider them as functions on the model complexity parameter λ. We also use Gumbel-softmax distribution for sampling non-linear operations instead of using softmax function on the structure parameters α^{(i,j)}: this gives us the relaxed architecture very close to the target discrete one.
 
 ## Technical details
 The core of our NAS implementation is based on the [pt.darts, reimplementation of the DARTS method](https://github.com/khanrc/pt.darts) with some bug fixes (see issues in the original repository).
